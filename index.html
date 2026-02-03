@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftSites - Professional Web Design for Small Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --blue: #2563eb;
+            --blue-dark: #1d4ed8;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--black);
+            text-decoration: none;
+        }
+        
+        .logo span { color: var(--blue); }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover { color: var(--black); }
+        
+        .nav-cta {
+            background: var(--blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        
+        .nav-cta:hover { background: var(--blue-dark); }
+        
+        /* Hero */
+        .hero {
+            padding: 10rem 5% 6rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.9rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--blue);
+            color: white;
+        }
+        
+        .btn-primary:hover { background: var(--blue-dark); }
+        
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-800);
+        }
+        
+        .btn-secondary:hover { background: var(--gray-200); }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 3rem 5%;
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+            margin: 2rem 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--black);
+        }
+        
+        .stat-label {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+        
+        /* Services */
+        .services {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-tag {
+            color: var(--blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 0.5rem;
+            color: var(--black);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--gray-50);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+        
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+        
+        .service-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+        
+        /* Portfolio */
+        .portfolio {
+            padding: 5rem 5%;
+            background: var(--gray-50);
+        }
+        
+        .portfolio-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .portfolio-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+        
+        .portfolio-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+        
+        .portfolio-item p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .portfolio-link {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .portfolio-link:hover { text-decoration: underline; }
+        
+        /* Process */
+        .process {
+            padding: 5rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .process-steps {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+        
+        .step-content p {
+            color: var(--gray-600);
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 5rem 5%;
+            background: var(--gray-50);
+        }
+        
+        .pricing-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--blue);
+            position: relative;
+        }
+        
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--blue);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--black);
+            margin: 1rem 0;
+        }
+        
+        .pricing-card .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-600);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--blue);
+            font-weight: 700;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 5rem 5%;
+            text-align: center;
+            background: var(--black);
+            color: white;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            color: var(--gray-400);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta .btn-primary {
+            background: white;
+            color: var(--black);
+        }
+        
+        .cta .btn-primary:hover {
+            background: var(--gray-200);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--gray-900);
+            color: var(--gray-400);
+            text-align: center;
+        }
+        
+        footer p { font-size: 0.9rem; }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 8rem 5% 4rem; }
+            .hero h1 { font-size: 2rem; }
+            .stats { flex-direction: column; gap: 2rem; }
+            .section-title { font-size: 2rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .process-step { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">Swift<span>Sites</span></a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Get a Free Quote</a>
+    </nav>
+
+    <section class="hero">
+        <span class="hero-badge">Professional Web Design</span>
+        <h1>Modern Websites for Small Businesses</h1>
+        <p>We build fast, beautiful websites that help local businesses grow. No templates. No subscriptions. Just results.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Get Started Today</a>
+            <a href="#portfolio" class="btn btn-secondary">View Our Work</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Websites Delivered</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Client Satisfaction</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">5 Days</div>
+            <div class="stat-label">Average Delivery</div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <span class="section-tag">What We Do</span>
+            <h2 class="section-title">Our Services</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <h3>Website Design</h3>
+                <p>Custom designs tailored to your brand. Mobile-friendly, fast-loading, and built to convert visitors into customers.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                </div>
+                <h3>SEO Optimization</h3>
+                <p>Get found on Google. We optimize every page so local customers can discover your business easily.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>Hosting & Maintenance</h3>
+                <p>We handle the technical stuff. Your site stays fast, secure, and up-to-date with no extra hassle.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="portfolio-inner">
+            <div class="section-header">
+                <span class="section-tag">Our Work</span>
+                <h2 class="section-title">Recent Projects</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&q=80" alt="Green Valley Landscaping" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Landscaping</span>
+                        <h3>Green Valley Landscaping</h3>
+                        <p>Modern website for a Texas-based landscaping company with online booking and service showcase.</p>
+                        <a href="https://cold-outreach-templates.pages.dev/landscaping-v3/?name=Green%20Valley%20Landscaping&city=Austin&state=Texas" target="_blank" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=800&q=80" alt="Premier Auto Care" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Auto Repair</span>
+                        <h3>Premier Auto Care</h3>
+                        <p>Clean, professional site for an auto repair shop with service menu and appointment requests.</p>
+                        <a href="#" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Bella's Italian Kitchen" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Restaurant</span>
+                        <h3>Bella's Italian Kitchen</h3>
+                        <p>Elegant restaurant website with online menu, reservation system, and location map.</p>
+                        <a href="#" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80" alt="Style Studio Salon" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Salon</span>
+                        <h3>Style Studio Salon</h3>
+                        <p>Stylish website for a beauty salon featuring services, pricing, and online booking.</p>
+                        <a href="#" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process" id="process">
+        <div class="section-header">
+            <span class="section-tag">How We Work</span>
+            <h2 class="section-title">Simple 3-Step Process</h2>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Discovery Call</h3>
+                    <p>We learn about your business, goals, and what you need from your website. Takes about 15 minutes.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Design & Build</h3>
+                    <p>We create your custom website in 3-5 business days. You review and request any changes.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Launch</h3>
+                    <p>Your site goes live. We handle hosting, SSL, and make sure everything runs smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="pricing-inner">
+            <div class="section-header">
+                <span class="section-tag">Pricing</span>
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$499 <span>one-time</span></div>
+                    <ul class="pricing-features">
+                        <li>5-page website</li>
+                        <li>Mobile responsive</li>
+                        <li>Contact form</li>
+                        <li>Basic SEO</li>
+                        <li>1 revision round</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width:100%;display:block;">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$999 <span>one-time</span></div>
+                    <ul class="pricing-features">
+                        <li>10-page website</li>
+                        <li>Mobile responsive</li>
+                        <li>Contact form + Maps</li>
+                        <li>Advanced SEO</li>
+                        <li>Social media links</li>
+                        <li>3 revision rounds</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width:100%;display:block;">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <div class="price">$1,999 <span>one-time</span></div>
+                    <ul class="pricing-features">
+                        <li>Unlimited pages</li>
+                        <li>E-commerce ready</li>
+                        <li>Booking integration</li>
+                        <li>Premium SEO package</li>
+                        <li>Priority support</li>
+                        <li>Unlimited revisions</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width:100%;display:block;">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <h2>Ready to Get Started?</h2>
+        <p>Get a free quote for your business website. No obligations, no pressure.</p>
+        <a href="mailto:hello@swiftsites.co" class="btn btn-primary">Request Free Quote</a>
+    </section>
+
+    <footer>
+        <p>© 2026 SwiftSites. All rights reserved.</p>
+    </footer>
+</body>
+</html>
